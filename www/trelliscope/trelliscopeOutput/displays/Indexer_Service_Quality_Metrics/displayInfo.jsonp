@@ -1,0 +1,246 @@
+__loadDisplayInfo__387a5668({
+  "name": "Indexer Service Quality Metrics",
+  "description": "Indexer Service Quality Metrics",
+  "tags": [],
+  "keycols": ["subgraph_deployment_ipfs_hash"],
+  "metas": [
+    {
+      "maxnchar": 46,
+      "sortable": true,
+      "filterable": true,
+      "tags": [],
+      "label": "subgraph_deployment_ipfs_hash",
+      "type": "string",
+      "varname": "subgraph_deployment_ipfs_hash"
+    },
+    {
+      "maxnchar": 12,
+      "sortable": true,
+      "filterable": true,
+      "tags": [],
+      "label": "Chain ID",
+      "type": "string",
+      "varname": "chain_id"
+    },
+    {
+      "log": false,
+      "locale": true,
+      "digits": 1,
+      "maxnchar": 5,
+      "sortable": true,
+      "filterable": true,
+      "tags": [],
+      "label": "Average Success Rate (%)",
+      "type": "number",
+      "varname": "avg_success_rate"
+    },
+    {
+      "log": false,
+      "locale": true,
+      "digits": 1,
+      "maxnchar": 5,
+      "sortable": true,
+      "filterable": true,
+      "tags": [],
+      "label": "Minimum Success Rate (%)",
+      "type": "number",
+      "varname": "min_success_rate"
+    },
+    {
+      "log": true,
+      "locale": true,
+      "digits": 1,
+      "maxnchar": 7,
+      "sortable": true,
+      "filterable": true,
+      "tags": [],
+      "label": "Average Latency (ms)",
+      "type": "number",
+      "varname": "avg_latency"
+    },
+    {
+      "log": true,
+      "locale": true,
+      "digits": 1,
+      "maxnchar": 7,
+      "sortable": true,
+      "filterable": true,
+      "tags": [],
+      "label": "Maximum Latency (ms)",
+      "type": "number",
+      "varname": "max_latency"
+    },
+    {
+      "log": true,
+      "locale": true,
+      "digits": 0,
+      "maxnchar": 5,
+      "sortable": true,
+      "filterable": true,
+      "tags": [],
+      "label": "Total Query Count",
+      "type": "number",
+      "varname": "total_queries"
+    },
+    {
+      "log": true,
+      "locale": true,
+      "digits": 0,
+      "maxnchar": 3,
+      "sortable": true,
+      "filterable": true,
+      "tags": [],
+      "label": "Average Queries per Day",
+      "type": "number",
+      "varname": "queries_per_day"
+    },
+    {
+      "log": false,
+      "locale": true,
+      "digits": 0,
+      "maxnchar": 3,
+      "sortable": true,
+      "filterable": true,
+      "tags": [],
+      "label": "Number of Observations",
+      "type": "number",
+      "varname": "n_observations"
+    },
+    {
+      "timezone": "UTC",
+      "maxnchar": 19,
+      "sortable": true,
+      "filterable": true,
+      "tags": [],
+      "label": "First Seen",
+      "type": "datetime",
+      "varname": "first_seen"
+    },
+    {
+      "timezone": "UTC",
+      "maxnchar": 19,
+      "sortable": true,
+      "filterable": true,
+      "tags": [],
+      "label": "Last Seen",
+      "type": "datetime",
+      "varname": "last_seen"
+    },
+    {
+      "source": {
+        "isLocal": true,
+        "type": "file"
+      },
+      "aspect": 0.833333333333333,
+      "paneltype": "img",
+      "maxnchar": 0,
+      "sortable": false,
+      "filterable": false,
+      "tags": [],
+      "label": "query_plot",
+      "type": "panel",
+      "varname": "query_plot"
+    }
+  ],
+  "state": {
+    "layout": {
+      "viewtype": "grid",
+      "sidebarActive": false,
+      "page": 1,
+      "ncol": 2,
+      "type": "layout"
+    },
+    "labels": {
+      "varnames": ["chain_id", "total_queries", "queries_per_day", "avg_success_rate"],
+      "type": "labels"
+    },
+    "sort": [
+      {
+        "type": "sort",
+        "varname": "total_queries",
+        "dir": "desc",
+        "metatype": "number"
+      }
+    ],
+    "filter": [],
+    "filterView": []
+  },
+  "views": [
+    {
+      "name": "High Volume Subgraphs (>10k queries/day)",
+      "state": {
+        "layout": {
+          "viewtype": "grid",
+          "sidebarActive": false,
+          "page": 1,
+          "ncol": 3,
+          "type": "layout"
+        },
+        "labels": {
+          "varnames": ["subgraph_deployment_ipfs_hash"],
+          "type": "labels"
+        },
+        "sort": [
+          {
+            "type": "sort",
+            "varname": "total_queries",
+            "dir": "desc",
+            "metatype": "number"
+          }
+        ],
+        "filter": [
+          {
+            "type": "filter",
+            "varname": "queries_per_day",
+            "filtertype": "numberrange",
+            "metatype": "number",
+            "min": 10000,
+            "max": null
+          }
+        ],
+        "filterView": []
+      }
+    },
+    {
+      "name": "Low Success Rate Subgraphs (<95%)",
+      "state": {
+        "layout": {
+          "viewtype": "grid",
+          "sidebarActive": false,
+          "page": 1,
+          "ncol": 3,
+          "type": "layout"
+        },
+        "labels": {
+          "varnames": ["subgraph_deployment_ipfs_hash"],
+          "type": "labels"
+        },
+        "sort": [
+          {
+            "type": "sort",
+            "varname": "avg_success_rate",
+            "dir": "asc",
+            "metatype": "number"
+          }
+        ],
+        "filter": [
+          {
+            "type": "filter",
+            "varname": "avg_success_rate",
+            "filtertype": "numberrange",
+            "metatype": "number",
+            "min": null,
+            "max": 95
+          }
+        ],
+        "filterView": []
+      }
+    }
+  ],
+  "inputs": null,
+  "primarypanel": "query_plot",
+  "thumbnailurl": "panels/query_plot/QmNNGeLDFBmpokExrcxzcTwanfzgdiHvArwnjTX46Lq5xi.png",
+  "infoOnLoad": false,
+  "hasCustomInfo": false,
+  "order": 0
+})
